@@ -1,0 +1,115 @@
+name: tokopedia_clone
+description: Tokopedia Clone - Project Perkuliahan Flutter
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  http: ^1.1.0
+  image_picker: ^1.0.7
+  path: ^1.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    # Banner images
+    - assets/images/banner_1.png
+    - assets/images/banner_2.png
+    - assets/images/banner_3.png
+    - assets/images/banner_product_1.png
+    - assets/images/mascot.png
+    - assets/images/toko_icon.png
+    - assets/images/profile_yoel.png
+    - assets/images/chat_icon.png
+
+    # Mobile banner
+    - assets/images/mobile_banner_1.png
+    - assets/images/mobile_banner_2.png
+    - assets/images/mobile_banner_3.png
+    - assets/images/banner_mobile_product.png
+
+    # New user section
+    - assets/images/new_user_product_1.png
+    - assets/images/new_user_product_2.png
+
+    # Product images (12 products)
+    - assets/images/product_1.png
+    - assets/images/product_2.png
+    - assets/images/product_3.png
+    - assets/images/product_4.png
+    - assets/images/product_5.png
+    - assets/images/product_6.png
+    - assets/images/product_7.png
+    - assets/images/product_8.png
+    - assets/images/product_9.png
+    - assets/images/product_10.png
+    - assets/images/product_11.png
+    - assets/images/product_12.png
+    - assets/images/product_13.png
+    - assets/images/product_14.png
+    - assets/images/product_15.png
+    - assets/images/product_16.png
+    - assets/images/product_17.png
+    - assets/images/product_18.png
+
+    # Category icons (desktop)
+    - assets/icons/cat_0.png
+    - assets/icons/cat_1.png
+    - assets/icons/cat_2.png
+    - assets/icons/cat_3.png
+    - assets/icons/cat_4.png
+    - assets/icons/cat_5.png
+    - assets/icons/cat_6.png
+
+    # Category icons (mobile)
+    - assets/icons/cat_mobile_0.png
+    - assets/icons/cat_mobile_1.png
+    - assets/icons/cat_mobile_2.png
+    - assets/icons/cat_mobile_3.png
+    - assets/icons/cat_mobile_4.png
+    - assets/icons/cat_mobile_5.png
+    - assets/icons/voucher_icon.png
+    - assets/icons/location_icon.png
+
+    # Quick access icons
+    - assets/icons/quick_0.png
+    - assets/icons/quick_1.png
+    - assets/icons/quick_2.png
+    - assets/icons/quick_3.png
+
+    # Mobile product images (terpisah dari web)
+    - assets/images/mobile_product_1.png
+    - assets/images/mobile_product_2.png
+    - assets/images/mobile_product_3.png
+    - assets/images/mobile_product_4.png
+    - assets/images/mobile_product_5.png
+    - assets/images/mobile_product_6.png
+
+    - assets/icons/chat_nav_icon.png
+    - assets/icons/nav_home.png
+    - assets/icons/nav_feed.png
+    - assets/icons/nav_mall.png
+    - assets/icons/nav_transaksi.png
+    - assets/icons/nav_akun.png
+
+    # Login/Register web
+    - assets/images/login_1.png
+    - assets/images/login_2.png
+    - assets/images/register_illustration.png
+    - assets/icons/google_icon.png
+    - assets/icons/tiktok_icon.png
+
+    - assets/icons/sms_icon.png
+    - assets/icons/whatsapp_icon.png
+    - assets/icons/tiktok_shop_icon.png
