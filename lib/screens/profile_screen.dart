@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants/app_constants.dart';
 import '../service/api_service.dart';
+import '../service/session_service.dart';
 import '../models/product_model.dart';
 import 'add_product_screen.dart';
 import 'edit_product_screen.dart';
@@ -65,9 +66,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     Navigator.pop(ctx);
-                    Navigator.pushReplacementNamed(context, '/login');
+                    await SessionService.clear();
+                    if (context.mounted) {
+                      Navigator.pushReplacementNamed(context, '/login');
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.red, foregroundColor: Colors.white, elevation: 0,

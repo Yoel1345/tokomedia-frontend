@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants/app_constants.dart';
 import '../service/api_service.dart';
+import '../service/session_service.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -29,7 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
       final res = await ApiService.login(input, input);
       if (mounted) {
         if (res['status'] == 'success') {
-          Navigator.pushReplacementNamed(context, '/home', arguments: input);
+          await SessionService.save(input);
+          if (mounted) {
+            Navigator.pushReplacementNamed(context, '/home', arguments: input);
+          }
         } else {
           setState(() => _errorText = 'User tidak ditemukan');
         }

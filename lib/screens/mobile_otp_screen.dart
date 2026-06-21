@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../constants/app_constants.dart';
 import '../service/api_service.dart';
+import '../service/session_service.dart';
 
 class MobileOtpScreen extends StatefulWidget {
   final String phoneOrEmail;
@@ -95,7 +96,10 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
       final res = await ApiService.verify(widget.phoneOrEmail, widget.phoneOrEmail, otp);
       if (mounted) {
         if (res['status'] == 'success') {
-          Navigator.pushReplacementNamed(context, '/home', arguments: widget.phoneOrEmail);
+          await SessionService.save(widget.phoneOrEmail);
+          if (mounted) {
+            Navigator.pushReplacementNamed(context, '/home', arguments: widget.phoneOrEmail);
+          }
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(res['message'] ?? 'Kode verifikasi salah')),

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../constants/app_constants.dart';
 import '../../models/product_model.dart';
@@ -9,20 +10,22 @@ class MobileProductSection extends StatefulWidget {
   const MobileProductSection({super.key, required this.username});
 
   @override
-  State<MobileProductSection> createState() => _MobileProductSectionState();
+  MobileProductSectionState createState() => MobileProductSectionState();
 }
 
-class _MobileProductSectionState extends State<MobileProductSection> {
+class MobileProductSectionState extends State<MobileProductSection> {
   int _selectedTab = 0;
   final ScrollController _tabScrollController = ScrollController();
   late final List<String> _tabs = ['For ${widget.username}', 'Mall', 'Elektronik', 'Handphone'];
   List<Product> _products = [];
   bool _isLoading = true;
+  Timer? _refreshTimer;
 
   @override
   void initState() {
     super.initState();
     _loadProducts();
+    _refreshTimer = Timer.periodic(const Duration(seconds: 30), (_) => _loadProducts());
   }
 
   Future<void> _loadProducts() async {
@@ -39,8 +42,11 @@ class _MobileProductSectionState extends State<MobileProductSection> {
   @override
   void dispose() {
     _tabScrollController.dispose();
+    _refreshTimer?.cancel();
     super.dispose();
   }
+
+  Future<void> refresh() => _loadProducts();
 
   @override
   Widget build(BuildContext context) {

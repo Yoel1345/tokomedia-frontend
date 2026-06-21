@@ -3,18 +3,22 @@ import 'screens/login_screen.dart';
 import 'screens/verify_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/home_screen.dart';
+import 'service/session_service.dart';
 import 'screens/mobile_login_screen.dart';
 import 'screens/mobile_register_screen.dart';
 import 'screens/mobile_verify_screen.dart';
 import 'screens/otp_screen.dart';
 import 'screens/mobile_otp_screen.dart';
 
-void main() {
-  runApp(const TokopediaApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final savedSession = await SessionService.get();
+  runApp(TokopediaApp(initialSession: savedSession));
 }
 
 class TokopediaApp extends StatelessWidget {
-  const TokopediaApp({super.key});
+  final String? initialSession;
+  const TokopediaApp({super.key, this.initialSession});
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +33,11 @@ class TokopediaApp extends StatelessWidget {
         fontFamily: 'sans-serif',
         useMaterial3: true,
       ),
-      initialRoute: '/login',
+      initialRoute: initialSession != null ? '/home' : '/login',
       routes: {
         '/login': (context) => const LoginScreenWrapper(),
         '/register': (context) => const RegisterScreenWrapper(),
-        '/home': (context) => const HomeScreen(),
+        '/home': (context) => HomeScreen(initialSession: initialSession),
       },
     );
   }

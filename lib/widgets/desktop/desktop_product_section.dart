@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../constants/app_constants.dart';
 import '../../models/product_model.dart';
@@ -17,11 +18,19 @@ class _DesktopProductSectionState extends State<DesktopProductSection> {
   late final List<String> _tabs = ['For ${widget.username}', 'Mall', 'Produk Incaranmu'];
   List<Product> _products = [];
   bool _isLoading = true;
+  Timer? _refreshTimer;
 
   @override
   void initState() {
     super.initState();
     _loadProducts();
+    _refreshTimer = Timer.periodic(const Duration(seconds: 30), (_) => _loadProducts());
+  }
+
+  @override
+  void dispose() {
+    _refreshTimer?.cancel();
+    super.dispose();
   }
 
   Future<void> _loadProducts() async {

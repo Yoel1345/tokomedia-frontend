@@ -3,7 +3,8 @@ import '../widgets/desktop/desktop_home.dart';
 import '../widgets/mobile/mobile_home.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String? initialSession;
+  const HomeScreen({super.key, this.initialSession});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -18,6 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final args = ModalRoute.of(context)?.settings.arguments;
     if (args is String && _phoneOrEmail == null) {
       _phoneOrEmail = args;
+    }
+    if (_phoneOrEmail == null && widget.initialSession != null) {
+      _phoneOrEmail = widget.initialSession;
     }
   }
 
