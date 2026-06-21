@@ -4,6 +4,7 @@ import 'screens/verify_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/home_screen.dart';
 import 'service/session_service.dart';
+import 'service/notification_service.dart';
 import 'screens/mobile_login_screen.dart';
 import 'screens/mobile_register_screen.dart';
 import 'screens/mobile_verify_screen.dart';
@@ -12,6 +13,7 @@ import 'screens/mobile_otp_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService.init();
   final savedSession = await SessionService.get();
   runApp(TokopediaApp(initialSession: savedSession));
 }

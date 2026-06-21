@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../constants/app_constants.dart';
 import '../service/api_service.dart';
 import '../service/session_service.dart';
+import '../service/notification_service.dart';
 
 class MobileOtpScreen extends StatefulWidget {
   final String phoneOrEmail;
@@ -97,6 +99,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
       if (mounted) {
         if (res['status'] == 'success') {
           await SessionService.save(widget.phoneOrEmail);
+          if (!kIsWeb) await NotificationService.registerToken(widget.phoneOrEmail);
           if (mounted) {
             Navigator.pushReplacementNamed(context, '/home', arguments: widget.phoneOrEmail);
           }

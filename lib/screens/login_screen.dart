@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import '../constants/app_constants.dart';
 import '../service/api_service.dart';
 import '../service/session_service.dart';
+import '../service/notification_service.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -31,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (mounted) {
         if (res['status'] == 'success') {
           await SessionService.save(input);
+          if (!kIsWeb) await NotificationService.registerToken(input);
           if (mounted) {
             Navigator.pushReplacementNamed(context, '/home', arguments: input);
           }

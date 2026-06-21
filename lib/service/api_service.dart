@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
@@ -113,5 +112,13 @@ class ApiService {
       headers: {'Content-Type': 'application/json'},
     );
     return jsonDecode(res.body);
+  }
+
+  static Future<void> registerFcmToken(String userIdentifier, String fcmToken) async {
+    await http.post(
+      Uri.parse('$baseUrl/register_fcm_token.php'),
+      body: jsonEncode({'user_identifier': userIdentifier, 'fcm_token': fcmToken}),
+      headers: {'Content-Type': 'application/json'},
+    );
   }
 }
